@@ -1,96 +1,323 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
-  </head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SHOP PHONE KNN</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
   <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
+    <!-- HEADER SHOP -->
+    <nav class="navbar bg-dark navbar-expand-lg" style="height: 90px;color: white;" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#" style="font-weight: 700;">KNN SHOP</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#" style="font-size: 17px;font-weight: 500;">Trang chủ</a>
+              </li>
+              <li class="nav-item">
+                <!-- Đăng nhập -->
+                <button type="button" class="nav-link" href="#" style="font-size: 17px;font-weight: 500;" data-bs-toggle="modal" data-bs-target="#exampleModal2">Tài khoản của tôi</button>
+
+                <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Đăng nhập</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">@</span>
+                        <input type="text" class="form-control" placeholder="Vui lòng điền email của bạn vào đây" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary">Login</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- ----------------------------------------------------------------- -->
+              </li>
+
+              <!-- CATAGORIES SẢN PHẨM -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 17px;font-weight: 500;">
+                 Danh mục sản phẩm
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                </ul>
+                <!-- ------------------------------------------ -->
+
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+
+               <!-- modal giỏ hàng -->
+              <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class='bx bxs-cart'></i></button>
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel"><i class='bx bx-store-alt'></i> Thông tin giỏ hàng</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- bảng giỏ hàng thanh toán  -->
+                      <table class="table table-striped-columns">
+                        <thead>
+                            <tr>
+                              <th scope="col">STT</th>
+                              <th scope="col">Hình ảnh</th>
+                              <th scope="col">Tên sản phẩm</th>
+                              <th scope="col">Giá sản phẩm</th>
+                              <th scope="col">Số lượng</th>
+                              <th scope="col">Thành tiền</th>
+                              <th scope="col">Tùy chỉnh</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td><img width="50" src="https://images.fpt.shop/unsafe/fit-in/214x214/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2022/6/15/637908818266708070_quat-hop-ac-abf01a125-1.jpg" alt=""></td>
+                              <td>Quạt máy</td>
+                              <td>500.000</td>
+                              <td>2</td>
+                              <td>1.0000.0000</td>
+                              <td ><button class="btn btn-outline-success me-2"><i class='bx bxs-message-square-x'></i></button></td>
+                            </tr>
+                            
+                          </tbody>
+                    </table>
+                    <!-- ----------------------------------------- -->
+                    </div>
+                    <div class="modal-footer">
+                        <p style="font-weight:400;">Tổng số tiền: </p><span>200.0000</span>
+                      </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                      <button type="button" class="btn btn-primary">Thanh toán</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- --------------------------------------- -->
+
+              <input class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm tại đây" aria-label="Search" style="width: 300px;">
+              <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+  
+
+    <!-- slide banner shop -->
+    <div id="carouselExample" class="carousel slide" >
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://cdn.tgdd.vn/2023/07/banner/acer-1200-300-1200x300-2.png" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="https://cdn.tgdd.vn/2023/07/banner/msi-1200-300-1200x300-1.png" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="https://cdn.tgdd.vn/2023/08/banner/laptop-masstel-1200-300-1200x300.png" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!-- ------------------------------------------ -->
+    
+    <!-- Title sản phẩm -->
+    <div class="container text-center mt-3">
+        <div class="row">
+          <div class="col">
+          <h3>Sản phẩm nổi bật</h3>
+          </div>
+        </div>
+      </div>
+    <!-- ----------------------------------------------------------------- -->
+
+    <!-- Gian hàng sản phẩm sản phẩm -->
+    <div class="container text-center mt-3 mb-2">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <img src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" class="card-img-top" alt="...">
+                <div class="card-body" style="text-align: left;">
+                  <h5 class="card-title">Laptop HP 240 G8 i3 1115G4/8GB/256GB/Win11 (6L1A1PA)</h5>
+                  <p class="card-text"><span style="font-weight: 500;">Giá: </span><span>6.900.000đ</span></p>
+                  <p class="card-text"><span style="font-weight: 500;">Loại sản phẩm: </span><span>Máy tính</span></p>
+                  <p class="card-text"><span style="font-weight: 500;">Thương hiệu: </span><span>HP</span></p>
+                  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group me-2" role="group" aria-label="First group">
+                      <button type="button" class="btn btn-primary">Mua hàng</button>
+                    </div>
+                    <div class="btn-group me-2" role="group" aria-label="Second group">
+                      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal3">Xem chi tiết</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+          <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <img src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" class="card-img-top" alt="...">
+                <div class="card-body" style="text-align: left;">
+                  <h5 class="card-title">Laptop HP 240 G8 i3 1115G4/8GB/256GB/Win11 (6L1A1PA)</h5>
+                  <p class="card-text"><span style="font-weight: 500;">Giá: </span><span>6.900.000đ</span></p>
+                  <p class="card-text"><span style="font-weight: 500;">Loại sản phẩm: </span><span>Máy tính</span></p>
+                  <p class="card-text"><span style="font-weight: 500;">Thương hiệu: </span><span>HP</span></p>
+                  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group me-2" role="group" aria-label="First group">
+                      <button type="button" class="btn btn-primary">Mua hàng</button>
+                    </div>
+                    <div class="btn-group me-2" role="group" aria-label="Second group">
+                      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal3">Xem chi tiết</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+          </div>
+          <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <img src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" class="card-img-top" alt="...">
+                <div class="card-body" style="text-align: left;">
+                  <h5 class="card-title">Laptop HP 240 G8 i3 1115G4/8GB/256GB/Win11 (6L1A1PA)</h5>
+                  <p class="card-text"><span style="font-weight: 500;">Giá: </span><span>6.900.000đ</span></p>
+                  <p class="card-text"><span style="font-weight: 500;">Loại sản phẩm: </span><span>Máy tính</span></p>
+                  <p class="card-text"><span style="font-weight: 500;">Thương hiệu: </span><span>HP</span></p>
+                  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group me-2" role="group" aria-label="First group">
+                      <button type="button" class="btn btn-primary">Mua hàng</button>
+                    </div>
+                    <div class="btn-group me-2" role="group" aria-label="Second group">
+                      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal3">Xem chi tiết</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+          </div>
+          <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <img src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" class="card-img-top" alt="...">
+                <div class="card-body" style="text-align: left;">
+                  <h5 class="card-title">Laptop HP 240 G8 i3 1115G4/8GB/256GB/Win11 (6L1A1PA)</h5>
+                  <p class="card-text"><span style="font-weight: 500;">Giá: </span><span>6.900.000đ</span></p>
+                  <p class="card-text"><span style="font-weight: 500;">Loại sản phẩm: </span><span>Máy tính</span></p>
+                  <p class="card-text"><span style="font-weight: 500;">Thương hiệu: </span><span>HP</span></p>
+                  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group me-2" role="group" aria-label="First group">
+                      <button type="button" class="btn btn-primary">Mua hàng</button>
+                    </div>
+                    <div class="btn-group me-2" role="group" aria-label="Second group">
+                      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal3">Xem chi tiết</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container text-center mb-4">
+        <div class="row">
+          <div class="col">
+           <button class="btn btn-outline-success">Xem thêm</button>
+          </div>
+        </div>
+      </div>
+
+    <!-- ----------------------------------------------------------------- -->
+
+    <!-- modal chi tiết sản phẩm -->
+    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Chi tiết sản phẩm</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <!-- gallery sản phẩm -->
+                <div class="container text-center">
+                    <div class="row">
+                      <div class="col">
+                        <img src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" alt="">
+                        <div class="gallery mt-3">
+                        <img style="cursor: pointer;" width="50" height="50" src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" alt="">
+                        <img style="cursor: pointer;" width="50" height="50" src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" alt="">
+                        <img style="cursor: pointer;" width="50" height="50" src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" alt="">
+                        <img style="cursor: pointer;" width="50" height="50" src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" alt="">
+                        <img style="cursor: pointer;" width="50" height="50" src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" alt="">
+                        <img style="cursor: pointer;" width="50" height="50" src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" alt="">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="container text-center">
+                            <div class="row">
+                              <div class="col">
+                                <div class="product-sell" style="text-align: left;">
+                                    <p style="font-weight: 500;">Laptop HP 240 G8 i3 1115G4/8GB/256GB/Win11 (6L1A1PA)</p>
+                                    <p><span style="font-weight: 500;">Giá: </span><span style="font-weight: 400;">6.900.000đ</span></p>
+                                    <button class="btn btn-primary">Mua Ngay</button>
+                                    <div class="btn-toolbar mt-3" role="toolbar" aria-label="Toolbar with button groups">
+                                        <div class="btn-group me-2" role="group" aria-label="First group">
+                                          <button type="button" class="btn btn-primary">Trả góp 0%</button>
+                                        </div>
+                                        <div class="btn-group me-2" role="group" aria-label="Second group">
+                                          <button type="button" class="btn btn-primary">Trả góp qua thẻ</button>
+                                        </div>
+                                      </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>  
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="bai-viet-sp ms-3">
+                   <p style="font-size: 20px;font-weight: 500;">Bài viết sản phẩm</p>
+                </div>
+            <!-- ----------------------------------------- -->
+          </div>
+        </div>
+      </div>
+    <!-- --------------------------------------- -->
+
+      <!-- FOOTER SHOPPING -->
+      <div class="fotter mt-4" style="background-color: black;height: 100px;color: aliceblue;">
+        <div style="width: 100%;" class="container text-center w-100 mb-5 mt-4" data-bs-theme="dark">
+            <div style="width: 100%;" class="row w-100">
+              <div style="width: 100%;" class="col w-100 mt-4">
+                Creator by Ngoc
+              </div>
+            </div>
+          </div>
+      </div>
+      
+      <!-- ----------------------------------------------------------------- -->
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   </body>
 </html>
