@@ -9,9 +9,9 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.19.4.css">
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.19.4.css">
 </head>
 
 <body>
@@ -30,9 +30,16 @@
               chủ</a>
           </li>
           <li class="nav-item">
+            <button type="button" class="nav-link" href="#" style="font-size: 17px;font-weight: 500;"
+              data-bs-toggle="modal" data-bs-target="#exampleModal33">Chi tiết hóa đơn</button>
+          </li>
+
+
+          <li class="nav-item">
             <!-- Đăng nhập -->
             <button type="button" class="nav-link" href="#" style="font-size: 17px;font-weight: 500;"
               data-bs-toggle="modal" data-bs-target="#exampleModal2">Tài khoản của tôi</button>
+
 
             <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
@@ -45,8 +52,9 @@
                   <div class="modal-body">
                     <div class="input-group mb-3">
                       <span class="input-group-text" id="basic-addon1">@</span>
-                      <input type="text" class="form-control email-submit" placeholder="Vui lòng điền email của bạn vào đây"
-                        aria-label="Username" aria-describedby="basic-addon1">
+                      <input type="text" class="form-control email-submit"
+                        placeholder="Vui lòng điền email của bạn vào đây" aria-label="Username"
+                        aria-describedby="basic-addon1">
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -55,7 +63,40 @@
                 </div>
               </div>
             </div>
-            <!-- ----------------------------------------------------------------- -->
+
+            <!-- chi tiết hóa đơn -->
+            <div class="modal fade" id="exampleModal33" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Chi tiết hóa đơn</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="input-group mb-3">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Mã hóa đơn</th>
+                            <th scope="col">Tên khách hàng</th>
+                            <th scope="col">Số điện thoại</th>
+                            <th scope="col">Địa chỉ</th>
+                          </tr>
+                        </thead>
+                        <tbody class="chi-tiet-hoa-don-2">
+
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- ----------------------------------------------------------------- -->
           </li>
 
           <!-- CATAGORIES SẢN PHẨM -->
@@ -65,7 +106,7 @@
               Danh mục sản phẩm
             </a>
             <ul class="dropdown-menu catagories">
-              
+
             </ul>
             <!-- ------------------------------------------ -->
 
@@ -100,8 +141,8 @@
                       </tr>
                     </thead>
                     <tbody class="hoa-don-san-pham">
-                      
-                        
+
+
 
                     </tbody>
                   </table>
@@ -112,18 +153,45 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                  <button type="button" class="btn btn-primary">Thanh toán</button>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal331">Thanh toán</button>
                 </div>
               </div>
             </div>
           </div>
           <!-- --------------------------------------- -->
 
-          <input class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm tại đây" aria-label="Search"
-            style="width: 300px;">
-          <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
+          <input onchange="search_product()" class="form-control me-2 tim-kiem-san-pham" type="search"
+            placeholder="Tìm kiếm sản phẩm tại đây" aria-label="Search" style="width: 300px;">
+          <button class="btn btn-outline-success">Tìm kiếm</button>
         </form>
       </div>
+
+      <!-- form thanh toan -->
+      <div class="modal fade" id="exampleModal331" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Form thanh toán</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div>
+                <input type="text" class="form-control mt-3 name_customer" placeholder="Tên của bạn"
+                  aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" class="form-control mt-3 phone_customer" placeholder="Số điện thoại của bạn"
+                  aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" class="form-control mt-3 address" placeholder="Địa chỉ nhận hàng"
+                  aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary submit-thanh-toan">Đồng ý thanh toán</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ------------------------------------------ -->
     </div>
   </nav>
 
@@ -196,9 +264,10 @@
           <div class="container text-center">
             <div class="row">
               <div class="col">
-                <img src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg"
+                <img class="anh_main_product"
+                  src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg"
                   alt="">
-                <div class="gallery mt-3">
+                <div class="gallery mt-3 catolo">
                   <img style="cursor: pointer;" width="50" height="50"
                     src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg"
                     alt="">
@@ -224,10 +293,12 @@
                   <div class="row">
                     <div class="col">
                       <div class="product-sell1" style="text-align: left;">
-                        <p style="font-weight: 500;">Laptop HP 240 G8 i3 1115G4/8GB/256GB/Win11 (6L1A1PA)</p>
-                        <p><span style="font-weight: 500;">Giá: </span><span style="font-weight: 400;">6.900.000đ</span>
+                        <p class="name-product102" style="font-weight: 500;">Laptop HP 240 G8 i3 1115G4/8GB/256GB/Win11
+                          (6L1A1PA)</p>
+                        <p><span style="font-weight: 500;">Giá: </span><span class="price-product102"
+                            style="font-weight: 400;">6.900.000đ</span>
                         </p>
-                        <button class="btn btn-primary">Mua Ngay</button>
+                        <button class="btn btn-primary addtocartview">Mua Ngay</button>
                         <div class="btn-toolbar mt-3" role="toolbar" aria-label="Toolbar with button groups">
                           <div class="btn-group me-2" role="group" aria-label="First group">
                             <button type="button" class="btn btn-primary">Trả góp 0%</button>
@@ -244,7 +315,7 @@
             </div>
           </div>
         </div>
-        <div class="bai-viet-sp ms-3">
+        <div class="bai-viet-sp ms-3 blog">
           <p style="font-size: 20px;font-weight: 500;">Bài viết sản phẩm</p>
         </div>
         <!-- ----------------------------------------- -->
@@ -289,7 +360,7 @@
                   <p class="card-text"><span style="font-weight: 500;">Thương hiệu: </span><span>Apple</span></p>
                   <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group me-2" role="group" aria-label="First group">
-                      <button type="button" onclick="addtocart(`+ field[i].id +","+"'"+"https://students.trungthanhweb.com/images/" + field[i].images+"'"+ `)" class="btn btn-primary">Mua hàng</button>
+                      <button type="button" onclick="addtocart(`+ field[i].id + "," + "'" + "https://students.trungthanhweb.com/images/" + field[i].images + "'" + `)" class="btn btn-primary">Mua hàng</button>
                     </div>
                     <div class="btn-group me-2" role="group" aria-label="Second group">
                       <button onclick="view_product(`+ field[i].id + `)" id="` + field[i].id + `" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal3">Xem chi tiết</button>
@@ -313,257 +384,257 @@
 
 
     var key = localStorage.getItem("api_token");
-        if (key != null) {
-            $(".submit-login").html("Đăng xuất");
-            $(".email-submit").val(localStorage.getItem("api_token"))
-            $(".title-login").html(localStorage.getItem("email"));
-        }
+    if (key != null) {
+      $(".submit-login").html("Đăng xuất");
+      $(".email-submit").val(localStorage.getItem("api_token"))
+      $(".title-login").html(localStorage.getItem("email"));
+    }
 
-        $(".submit-login").click(function () {
-            var key2 = localStorage.getItem("api_token")
-            if (key2 == null) {
-                login($(".email-submit").val())
-            }
-            if (key2 != null) {
-                localStorage.removeItem("api_token");
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
-
-                Toast.fire({
-                    icon: 'info',
-                    title: 'Đăng xuất thành công'
-                }).then(() => {
-                    window.location.reload();
-                })
-            }
+    $(".submit-login").click(function () {
+      var key2 = localStorage.getItem("api_token")
+      if (key2 == null) {
+        login($(".email-submit").val())
+      }
+      if (key2 != null) {
+        localStorage.removeItem("api_token");
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
         })
-        function login(email) {
-            if (email != "") {
-                $.ajax({
-                    method: "POST",
-                    url: "https://students.trungthanhweb.com/api/checkLoginhtml",
-                    data: { "email": email },
-                    success: function (result) {
-                        localStorage.setItem("api_token", result.apitoken)
-                        localStorage.setItem("email", email)
-                        $(".submit-login").html("Đăng xuất");
-                        $(".email-submit").val(result.apitoken);
-                        $(".title-login").html(email);
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
 
-                        Toast.fire({
-                            icon: 'success',
-                            title: 'Đăng nhập thành công'
-                        }).then(() => {
-                            window.location.reload();
-                        })
-                    }
-                }
-                )
-            }
-            else {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
+        Toast.fire({
+          icon: 'info',
+          title: 'Đăng xuất thành công'
+        }).then(() => {
+          window.location.reload();
+        })
+      }
+    })
+    function login(email) {
+      if (email != "") {
+        $.ajax({
+          method: "POST",
+          url: "https://students.trungthanhweb.com/api/checkLoginhtml",
+          data: { "email": email },
+          success: function (result) {
+            localStorage.setItem("api_token", result.apitoken)
+            localStorage.setItem("email", email)
+            $(".submit-login").html("Đăng xuất");
+            $(".email-submit").val(result.apitoken);
+            $(".title-login").html(email);
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
 
-                Toast.fire({
-                    icon: 'error',
-                    title: 'Vui lòng điền email vào'
-                })
-            }
-
+            Toast.fire({
+              icon: 'success',
+              title: 'Đăng nhập thành công'
+            }).then(() => {
+              window.location.reload();
+            })
+          }
         }
- 
-        function addtocart(id,src) {
-            var key3 = localStorage.getItem("api_token");
-            if (key3 != null) {
-                var cart_localstore = localStorage.getItem("cart");
-                if (cart_localstore != null) {
-                    var quality = 1;
-                    console.log("Đã đăng nhập");
-                    string_class_name_product = ".product" + id;
-                    string_price_product = ".product-price" + id;
-                    name_product = $(string_class_name_product).text();
-                    price_product = $(string_price_product).text().replace(",","").replace(",","");
-                    console.log(price_product);
-                    string_set_add_to_cart = quality + "," + name_product + "," + price_product+","+src
-                    cart = []
-                    check = 0
-                    cart.push(string_set_add_to_cart)
-                    cart_split = cart_localstore.split("##");
-                    str2=''
-                    cart_split.forEach(element => {
-                        if (element.split(",")[1] == name_product) {
-                            check = 1
-                            string_update = parseInt(element.split(",")[0]) + 1 + "," + element.split(",")[1]+"," + element.split(",")[2]+","+src
-                            str2=str2+string_update
-                        }
-                    });
-                    if (check == 1) {
-                        cart00 = localStorage.getItem("cart").split("##")
-                        cart00[0] = str2
-                        console.log(cart00);
-                        str = ''
-                        k = 1
-                        cart00.forEach(element => {
-                            if (k < cart00.length) {
-                                str = str + element + "##"
-                            }
-                            if (k == cart00.length) {
-                                str = str + element
-                            }
-                            k = k + 1
-                        });
-                        localStorage.setItem('cart', str)
-                    }
-                    if (check != 1) {
-                        localStorage.setItem('cart', cart + "##" + cart_localstore)
-                    }
-                    show_san_pham()
-                }
+        )
+      }
+      else {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
 
-                if (cart_localstore == null) {
-                    var quality = 1;
-                    console.log("Đã đăng nhập");
-                    string_class_name_product = ".product" + id;
-                    string_price_product = ".product-price" + id;
-                    name_product = $(string_class_name_product).text().replace(",","").replace(",","");
-                    price_product = $(string_price_product).text();
-                    string_set_add_to_cart = quality + "," + name_product + "," + price_product+","+src
-                    cart = []
-                    check = 0
-                    cart.push(string_set_add_to_cart)
-                    localStorage.setItem('cart', cart)
-                    show_san_pham()
-                }
-            }
-            if (key3 == null) {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
+        Toast.fire({
+          icon: 'error',
+          title: 'Vui lòng điền email vào'
+        })
+      }
 
-                Toast.fire({
-                    icon: 'warning',
-                    title: 'Vui lòng đăng nhập trước khi mua hàng'
-                })
+    }
+
+    function addtocart(id, src) {
+      var key3 = localStorage.getItem("api_token");
+      if (key3 != null) {
+        var cart_localstore = localStorage.getItem("cart");
+        if (cart_localstore != null) {
+          var quality = 1;
+          console.log("Đã đăng nhập");
+          string_class_name_product = ".product" + id;
+          string_price_product = ".product-price" + id;
+          name_product = $(string_class_name_product).text();
+          price_product = $(string_price_product).text().replace(",", "").replace(",", "");
+          console.log(price_product);
+          string_set_add_to_cart = quality + "," + name_product + "," + price_product + "," + src
+          cart = []
+          check = 0
+          cart.push(string_set_add_to_cart)
+          cart_split = cart_localstore.split("##");
+          str2 = ''
+          cart_split.forEach(element => {
+            if (element.split(",")[1] == name_product) {
+              check = 1
+              string_update = parseInt(element.split(",")[0]) + 1 + "," + element.split(",")[1] + "," + element.split(",")[2] + "," + src
+              str2 = str2 + string_update
             }
+          });
+          if (check == 1) {
+            cart00 = localStorage.getItem("cart").split("##")
+            cart00[0] = str2
+            console.log(cart00);
+            str = ''
+            k = 1
+            cart00.forEach(element => {
+              if (k < cart00.length) {
+                str = str + element + "##"
+              }
+              if (k == cart00.length) {
+                str = str + element
+              }
+              k = k + 1
+            });
+            localStorage.setItem('cart', str)
+          }
+          if (check != 1) {
+            localStorage.setItem('cart', cart + "##" + cart_localstore)
+          }
+          show_san_pham()
         }
-        show_san_pham()
-        function show_san_pham(){
-        console.log("show sản phẩm");
-        cart_local= localStorage.getItem("cart");
-        cartlocal2=cart_local.split("##")
-        console.log(cartlocal2)
-        k=1
-        str44=""
-        tong_so_tien=0
-        cartlocal2.forEach(element => {
-            if(element.split(",")[0]!=""){
-                str22=`
+
+        if (cart_localstore == null) {
+          var quality = 1;
+          console.log("Đã đăng nhập");
+          string_class_name_product = ".product" + id;
+          string_price_product = ".product-price" + id;
+          name_product = $(string_class_name_product).text().replace(",", "").replace(",", "");
+          price_product = $(string_price_product).text();
+          string_set_add_to_cart = quality + "," + name_product + "," + price_product + "," + src
+          cart = []
+          check = 0
+          cart.push(string_set_add_to_cart)
+          localStorage.setItem('cart', cart)
+          show_san_pham()
+        }
+      }
+      if (key3 == null) {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+
+        Toast.fire({
+          icon: 'warning',
+          title: 'Vui lòng đăng nhập trước khi mua hàng'
+        })
+      }
+    }
+    show_san_pham()
+    function show_san_pham() {
+      console.log("show sản phẩm");
+      cart_local = localStorage.getItem("cart");
+      cartlocal2 = cart_local.split("##")
+      console.log(cartlocal2)
+      k = 1
+      str44 = ""
+      tong_so_tien = 0
+      cartlocal2.forEach(element => {
+        if (element.split(",")[0] != "") {
+          str22 = `
             <tr>
-                <th scope="row">`+k+`</th>
+                <th scope="row">`+ k + `</th>
                 <td><img width="50"
-                            src="`+element.split(",")[3]+`"
+                            src="`+ element.split(",")[3] + `"
                             alt=""></td>
-                <td>`+element.split(",")[1]+`</td>
-                <td>`+Intl.NumberFormat('en-US').format(element.split(",")[2])+`</td>
-                <td>`+element.split(",")[0]+`</td>
-                <td>`+Intl.NumberFormat('en-US').format(parseInt(element.split(",")[2])*parseInt(element.split(",")[0]))+`</td>
-                <td><button class="removeItem" style="width: 100px;border: none;background-color: black;color: white;" onclick="delete2('`+element.split(",")[1]+`')">xóa</button></td>
+                <td>`+ element.split(",")[1] + `</td>
+                <td>`+ Intl.NumberFormat('en-US').format(element.split(",")[2]) + `</td>
+                <td>`+ element.split(",")[0] + `</td>
+                <td>`+ Intl.NumberFormat('en-US').format(parseInt(element.split(",")[2]) * parseInt(element.split(",")[0])) + `</td>
+                <td><button class="removeItem" style="width: 100px;border: none;background-color: black;color: white;" onclick="delete2('`+ element.split(",")[1] + `')">xóa</button></td>
             </tr>
             `
-            str44 = str44+str22
-            tong_so_tien = tong_so_tien+parseInt(element.split(",")[2])*parseInt(element.split(",")[0])
-            k=k+1
-            }
-            
-        });
-        $(".hoa-don-san-pham").html(str44)
-        $(".tong-thanh-toan").html(Intl.NumberFormat('en-US').format(tong_so_tien))
+          str44 = str44 + str22
+          tong_so_tien = tong_so_tien + parseInt(element.split(",")[2]) * parseInt(element.split(",")[0])
+          k = k + 1
+        }
+
+      });
+      $(".hoa-don-san-pham").html(str44)
+      $(".tong-thanh-toan").html(Intl.NumberFormat('en-US').format(tong_so_tien))
     }
 
-    function delete2(name){
-        console.log("xoa san pham");
-        cart00 = localStorage.getItem("cart").split("##")
-        console.log(cart00);
-        str = ''
-        k = 1
-        cart00.forEach(element => {
-            cart_name= element.split(",")[1]
-            if(name!=cart_name){
-            if (k < cart00.length) {
-                str = str + element + "##"
-            }
-            if (k == cart00.length) {
-                str = str + element
-            }
-            }
-            k = k + 1
-        });
-        localStorage.setItem('cart', str)
-        show_san_pham()
+    function delete2(name) {
+      console.log("xoa san pham");
+      cart00 = localStorage.getItem("cart").split("##")
+      console.log(cart00);
+      str = ''
+      k = 1
+      cart00.forEach(element => {
+        cart_name = element.split(",")[1]
+        if (name != cart_name) {
+          if (k < cart00.length) {
+            str = str + element + "##"
+          }
+          if (k == cart00.length) {
+            str = str + element
+          }
+        }
+        k = k + 1
+      });
+      localStorage.setItem('cart', str)
+      show_san_pham()
     }
 
-    function show_san_pham2(){
-        $.ajax({
-                url: "https://students.trungthanhweb.com/api/home",
-                data: { "apitoken": "Sf6v5OIkLScoLYUEljQ4dJtDJyffsuRXchD24atYwE6KrU2wLfui1RC9PLHz"},
-                success: function (result) {
-                    console.log(result.products.last_page);
-                    number_page=parseInt(localStorage.getItem("current_page"));
-                    number_page2=parseInt(localStorage.getItem("max_current_page"));
-                    k = 0
-                    if(number_page<=number_page2){
-                        number_page3=number_page+1;
-                        localStorage.setItem("current_page",number_page3);
-                        $.ajax({
-            url: "https://students.trungthanhweb.com/api/home",
-            data: { "apitoken": "Sf6v5OIkLScoLYUEljQ4dJtDJyffsuRXchD24atYwE6KrU2wLfui1RC9PLHz","page":number_page3},
-            success: function (result) {
+    function show_san_pham2() {
+      $.ajax({
+        url: "https://students.trungthanhweb.com/api/home",
+        data: { "apitoken": "Sf6v5OIkLScoLYUEljQ4dJtDJyffsuRXchD24atYwE6KrU2wLfui1RC9PLHz" },
+        success: function (result) {
+          console.log(result.products.last_page);
+          number_page = parseInt(localStorage.getItem("current_page"));
+          number_page2 = parseInt(localStorage.getItem("max_current_page"));
+          k = 0
+          if (number_page <= number_page2) {
+            number_page3 = number_page + 1;
+            localStorage.setItem("current_page", number_page3);
+            $.ajax({
+              url: "https://students.trungthanhweb.com/api/home",
+              data: { "apitoken": "Sf6v5OIkLScoLYUEljQ4dJtDJyffsuRXchD24atYwE6KrU2wLfui1RC9PLHz", "page": number_page3 },
+              success: function (result) {
                 var str = "";
-                $.each(result.products, function (i,field) {
-                    for (i = 0; i < field.length; ++i) {
-                        k = k + 1
-                        if(field[i].name!=undefined){
-                            if (k <= 4) {
-                            if(field[i].name!=""){
-                                console.log(field[i].name);
-                                str1 = `<div class="col-md-3">
+                $.each(result.products, function (i, field) {
+                  for (i = 0; i < field.length; ++i) {
+                    k = k + 1
+                    if (field[i].name != undefined) {
+                      if (k <= 4) {
+                        if (field[i].name != "") {
+                          console.log(field[i].name);
+                          str1 = `<div class="col-md-3">
             <div class="card mb-3" style="width: 306;height:525;">
                 <img width="286" height="286" src="`+ "https://students.trungthanhweb.com/images/" + field[i].images + `" class="card-img-top" alt="...">
                 <div class="card-body" style="text-align: left;">
@@ -573,7 +644,7 @@
                   <p class="card-text"><span style="font-weight: 500;">Thương hiệu: </span><span>Apple</span></p>
                   <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group me-2" role="group" aria-label="First group">
-                      <button type="button" onclick="addtocart(`+ field[i].id +","+"'"+"https://students.trungthanhweb.com/images/" + field[i].images+"'"+ `)" class="btn btn-primary">Mua hàng</button>
+                      <button type="button" onclick="addtocart(`+ field[i].id + "," + "'" + "https://students.trungthanhweb.com/images/" + field[i].images + "'" + `)" class="btn btn-primary">Mua hàng</button>
                     </div>
                     <div class="btn-group me-2" role="group" aria-label="Second group">
                       <button onclick="view_product(`+ field[i].id + `)" id="` + field[i].id + `" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal3">Xem chi tiết</button>
@@ -582,48 +653,319 @@
                 </div>
             </div>
           </div>`;
-                                console.log(str1);
-                                $(".product-sell").append(str1);
-                            }
+                          console.log(str1);
+                          $(".product-sell").append(str1);
                         }
-                        }
+                      }
                     }
-                    /////
-                
+                  }
+                  /////
+
                 });
 
+              }
             }
+            )
+          }
+          else {
+            $(".load-san-pham11").attr("disabled");
+          }
         }
-        )
-                    }
-                    else{
-                        $(".load-san-pham11").attr("disabled");
-                    }
-                }
-            })
-    }
-  
-    loadcatogories()
-    function loadcatogories(){
-        $.ajax({
-                url: "https://students.trungthanhweb.com/api/home",
-                data: { "apitoken": "Sf6v5OIkLScoLYUEljQ4dJtDJyffsuRXchD24atYwE6KrU2wLfui1RC9PLHz"},
-                success: function (result) {
-                    console.log("success!");
-                    str=""
-                    $.each(result, function (i, field) {
-                    for (i = 0; i < field.length; ++i) {
-                        console.log(field[i].name)
-                        str2=`
-                        <li style="padding-left:4px;">`+field[i].name+`</li>
-                        `
-                        str=str+str2;
-                    }});
-                    $(".catagories").html(str);
-                }
-            })
+      })
     }
 
+    loadcatogories()
+    function loadcatogories() {
+      $.ajax({
+        url: "https://students.trungthanhweb.com/api/home",
+        data: { "apitoken": "Sf6v5OIkLScoLYUEljQ4dJtDJyffsuRXchD24atYwE6KrU2wLfui1RC9PLHz" },
+        success: function (result) {
+          console.log("success!");
+          str = ""
+          $.each(result, function (i, field) {
+            for (i = 0; i < field.length; ++i) {
+              console.log(field[i].name)
+              str2 = `
+                        <li style="padding-left:4px;">`+ field[i].name + `</li>
+                        `
+              str = str + str2;
+            }
+          });
+          $(".catagories").html(str);
+        }
+      })
+    }
+
+    function view_product(id) {
+      console.log("view-product");
+      $("#exampleModal3").modal("show");
+      $.ajax({
+        url: "https://students.trungthanhweb.com/api/single",
+        data: { "apitoken": "Sf6v5OIkLScoLYUEljQ4dJtDJyffsuRXchD24atYwE6KrU2wLfui1RC9PLHz", "id": id },
+        success: function (result) {
+          $.each(result, function (i, field) {
+            for (i = 0; i < field.length; ++i) {
+              if (field[i].id == id) {
+                console.log(field[i].content);
+                $(".blog").html(field[i].content)
+                $(".name-product102").html(field[i].name);
+                $(".price-product102").html(Intl.NumberFormat('en-US').format(field[i].price));
+              }
+            }
+          })
+          console.log(result.gallery);
+          galllery = result.gallery;
+          str0 = ''
+          galllery.forEach(element => {
+            str1 = `<img onclick="setimage('` + element + `')" style="width: 50px;" src="` + element + `" alt="">`
+            str0 = str0 + str1
+          });
+          $(".catolo").html(str0);
+          $(".anh_main_product").attr("src", result.gallery[0]);
+          $(".addtocartview").attr("id", id);
+          string = "addtocart(" + id + "," + "'" + result.gallery[0] + "'" + ")"
+          $(".addtocartview").attr("onclick", string);
+        }
+      })
+    }
+
+    $(".submit-thanh-toan").click(function () {
+      created_bill()
+    }
+    )
+
+    function created_bill() {
+
+      if (localStorage.getItem("cart") != "") {
+        name = $(".name_customer").val()
+        phone = $(".phone_customer").val()
+        address = $(".address").val()
+        console.log(name + phone + address);
+        if (name != "" || phone != "" || address != "") {
+          if (!phone.match(/(0[0|3|5|7|8|9])+[0-9]{8}\b/g)) {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+
+            Toast.fire({
+              icon: 'warning',
+              title: 'Vui lòng điền đúng định dạng số điện thoại'
+            })
+          }
+          else {
+            arr = []
+            text = localStorage.getItem("cart");
+            let position = text.search("##");
+            if (position == "-1") {
+              arr.push(text)
+            }
+            else {
+              cart = localStorage.getItem("cart").split("##");
+              cart.forEach(element => {
+                console.log(element.split(","));
+                k = element.split(",")
+                for (let index = 0; index < k.length; index++) {
+                  const element = k[index];
+                  if (index == 0) {
+                    console.log(element + "##product");
+                    arr.push(element + "##product");
+                  }
+                  else {
+                    console.log(element);
+                    arr.push(element);
+                  }
+                }
+
+              });
+            }
+            $.ajax({
+              method: "POST",
+              url: "https://students.trungthanhweb.com/api/createBill",
+              data: {
+                "tenKH": name,
+                "phone": phone,
+                "address": address,
+                "cart": arr,
+                "api_token": "Sf6v5OIkLScoLYUEljQ4dJtDJyffsuRXchD24atYwE6KrU2wLfui1RC9PLHz"
+              },
+              success: function (result) {
+                $.each(result, function (i, field) {
+                  for (i = 0; i < field.length; ++i) {
+                    if (field[i].id == id) {
+                      console.log(field[i].id);
+                    }
+                  }
+                })
+              }
+            }).then(() => {
+              localStorage.removeItem("cart");
+              window.location.reload();
+            })
+          }
+        }
+        else {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+
+          Toast.fire({
+            icon: 'warning',
+            title: 'Vui lòng điền đầy đủ thông tin thanh toán'
+          })
+        }
+
+      }
+      else {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+
+        Toast.fire({
+          icon: 'warning',
+          title: 'Bạn chưa có đơn hàng nào trong giỏ hàng'
+        })
+      }
+    }
+    view_chi_tiet_hoa_don()
+    function view_chi_tiet_hoa_don() {
+      $.ajax({
+        url: "https://students.trungthanhweb.com/api/bills",
+        data: {
+          "api_token": "Sf6v5OIkLScoLYUEljQ4dJtDJyffsuRXchD24atYwE6KrU2wLfui1RC9PLHz"
+        },
+        success: function (result) {
+          str = "";
+          $.each(result, function (i, field) {
+            for (i = 0; i < field.length; ++i) {
+              console.log(field[i].id);
+              if (field[i].id != "") {
+                str1 = `
+                        <tr>
+                          <th scope="row">`+ i + `</th>
+                          <td>`+ field[i].id + `</td>
+                          <td>`+ field[i].tenKH + `</td>
+                          <td>`+ field[i].phone + `</td>
+                          <td>`+ field[i].address + `</td>
+                        </tr>
+                        `
+                str = str + str1
+              }
+            }
+          })
+          $(".chi-tiet-hoa-don-2").html(str)
+        }
+      })
+    }
+
+    function search_product() {
+      name_value = $(".tim-kiem-san-pham").val()
+      if (name_value != "") {
+        $.ajax({
+          url: "https://students.trungthanhweb.com/api/getSearchProducts",
+          data: {
+            "apitoken": "Sf6v5OIkLScoLYUEljQ4dJtDJyffsuRXchD24atYwE6KrU2wLfui1RC9PLHz",
+            "name": name_value
+          },
+          success: function (result) {
+            str = ""
+            $.each(result, function (i, field) {
+              if(field.length<=3){
+                for (i = 0; i < field.length; ++i) {
+                
+                console.log(field[i]);
+                k = k + 1
+                  
+                  str1 = `<div class="col">
+            <div class="card mb-3" style="width: 306;height:525;">
+                <img width="286" height="286" src="`+ "https://students.trungthanhweb.com/images/" + field[i].image + `" class="card-img-top" alt="...">
+                <div class="card-body" style="text-align: left;">
+                  <h5 class="card-title product`+ field[i].id + `">` + field[i].name + `</h5>
+                  <p class="card-text"><span style="font-weight: 500;">Giá: </span><span class="product-price`+ field[i].id + `">` + Intl.NumberFormat('en-US').format(field[i].price) + `</span></p>
+                  <p class="card-text"><span style="font-weight: 500;">Loại sản phẩm: </span><span>Điện thoại</span></p>
+                  <p class="card-text"><span style="font-weight: 500;">Thương hiệu: </span><span>Apple</span></p>
+                  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group me-2" role="group" aria-label="First group">
+                      <button type="button" onclick="addtocart(`+ field[i].id + "," + "'" + "https://students.trungthanhweb.com/images/" + field[i].images + "'" + `)" class="btn btn-primary">Mua hàng</button>
+                    </div>
+                    <div class="btn-group me-2" role="group" aria-label="Second group">
+                      <button onclick="view_product(`+ field[i].id + `)" id="` + field[i].id + `" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal3">Xem chi tiết</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>`
+                  str = str + str1;
+              
+              }
+              console.log(str);
+              $(".product-sell").html(str);
+          }else{
+            for (i = 0; i < field.length; ++i) {
+                
+                console.log(field[i]);
+                k = k + 1
+                  
+                  str1 = `<div class="col">
+            <div class="card mb-3" style="width: 19rem;">
+                <img  src="`+ "https://students.trungthanhweb.com/images/" + field[i].image + `" class="card-img-top" alt="...">
+                <div class="card-body" style="text-align: left;">
+                  <h5 class="card-title product`+ field[i].id + `">` + field[i].name + `</h5>
+                  <p class="card-text"><span style="font-weight: 500;">Giá: </span><span class="product-price`+ field[i].id + `">` + Intl.NumberFormat('en-US').format(field[i].price) + `</span></p>
+                  <p class="card-text"><span style="font-weight: 500;">Loại sản phẩm: </span><span>Điện thoại</span></p>
+                  <p class="card-text"><span style="font-weight: 500;">Thương hiệu: </span><span>Apple</span></p>
+                  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group me-2" role="group" aria-label="First group">
+                      <button type="button" onclick="addtocart(`+ field[i].id + "," + "'" + "https://students.trungthanhweb.com/images/" + field[i].images + "'" + `)" class="btn btn-primary">Mua hàng</button>
+                    </div>
+                    <div class="btn-group me-2" role="group" aria-label="Second group">
+                      <button onclick="view_product(`+ field[i].id + `)" id="` + field[i].id + `" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal3">Xem chi tiết</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>`
+                  str = str + str1;
+              
+              }
+              console.log(str);
+              $(".product-sell").html(str);
+          }
+              
+            });
+
+          }
+        })
+      }
+      else {
+      window.location.reload();
+      }
+
+
+    }
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
