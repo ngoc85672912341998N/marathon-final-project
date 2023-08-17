@@ -475,7 +475,7 @@
 
     function addtocart(id, src) {
       try {
-        var key3 = localStorage.getItem("api_token");
+      var key3 = localStorage.getItem("api_token");
       if (key3 != null) {
         var cart_localstore = localStorage.getItem("cart");
         if (cart_localstore != null) {
@@ -544,7 +544,7 @@
           string_class_name_product = ".product" + id;
           string_price_product = ".product-price" + id;
           name_product = $(string_class_name_product).text().replace(",", "").replace(",", "");
-          price_product = $(string_price_product).text();
+          price_product = $(string_price_product).text().replace(",", "").replace(",", "");
           string_set_add_to_cart = quality + "," + name_product + "," + price_product + "," + src
           cart = []
           check = 0
@@ -594,8 +594,8 @@
     }
     show_san_pham()
     function show_san_pham() {
-      console.log("show sản phẩm");
       try {
+        try {
         cart_local = localStorage.getItem("cart");
         cartlocal2 = cart_local.split("##")
       } catch (error) {
@@ -628,6 +628,12 @@
       });
       $(".hoa-don-san-pham").html(str44)
       $(".tong-thanh-toan").html(Intl.NumberFormat('en-US').format(tong_so_tien))
+      } catch (error) {
+        console.log(error);
+        $(".tong-thanh-toan").html(Intl.NumberFormat('en-US').format(0))
+      }
+      console.log("show sản phẩm");
+      
     }
 
     function delete2(name) {
@@ -847,7 +853,9 @@
                     }
                   }
                 })
-              const Toast = Swal.mixin({
+              }
+            })
+            const Toast = Swal.mixin({
               toast: true,
               position: 'top-end',
               showConfirmButton: false,
@@ -862,12 +870,9 @@
             Toast.fire({
               icon: 'success',
               title: 'Thanh toán thành công'
-            })
-              }
             }).then(() => {
-              localStorage.removeItem("cart");
-              window.location.reload();
-            })
+          window.location.reload();
+        })
           }
         }
         else {
