@@ -1,323 +1,634 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SHOP PHONE KNN</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SHOP PHONE KNN</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.19.4.css">
 </head>
-  <body>
-    <!-- HEADER SHOP -->
-    <nav class="navbar bg-dark navbar-expand-lg" style="height: 90px;color: white;" data-bs-theme="dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#" style="font-weight: 700;">KNN SHOP</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#" style="font-size: 17px;font-weight: 500;">Trang chủ</a>
-              </li>
-              <li class="nav-item">
-                <!-- Đăng nhập -->
-                <button type="button" class="nav-link" href="#" style="font-size: 17px;font-weight: 500;" data-bs-toggle="modal" data-bs-target="#exampleModal2">Tài khoản của tôi</button>
 
-                <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Đăng nhập</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">@</span>
-                        <input type="text" class="form-control" placeholder="Vui lòng điền email của bạn vào đây" aria-label="Username" aria-describedby="basic-addon1">
-                        </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-primary">Login</button>
-                        </div>
-                      </div>
+<body>
+  <!-- HEADER SHOP -->
+  <nav class="navbar bg-dark navbar-expand-lg" style="height: 90px;color: white;" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" style="font-weight: 700;">KNN SHOP</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" style="font-size: 17px;font-weight: 500;">Trang
+              chủ</a>
+          </li>
+          <li class="nav-item">
+            <!-- Đăng nhập -->
+            <button type="button" class="nav-link" href="#" style="font-size: 17px;font-weight: 500;"
+              data-bs-toggle="modal" data-bs-target="#exampleModal2">Tài khoản của tôi</button>
+
+            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5 title-login" id="exampleModalLabel">Đăng nhập</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1">@</span>
+                      <input type="text" class="form-control email-submit" placeholder="Vui lòng điền email của bạn vào đây"
+                        aria-label="Username" aria-describedby="basic-addon1">
                     </div>
                   </div>
-                <!-- ----------------------------------------------------------------- -->
-              </li>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary submit-login">Login</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ----------------------------------------------------------------- -->
+          </li>
 
-              <!-- CATAGORIES SẢN PHẨM -->
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 17px;font-weight: 500;">
-                 Danh mục sản phẩm
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                </ul>
-                <!-- ------------------------------------------ -->
-
-              </li>
+          <!-- CATAGORIES SẢN PHẨM -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+              style="font-size: 17px;font-weight: 500;">
+              Danh mục sản phẩm
+            </a>
+            <ul class="dropdown-menu catagories">
+              
             </ul>
-            <form class="d-flex" role="search">
+            <!-- ------------------------------------------ -->
 
-               <!-- modal giỏ hàng -->
-              <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class='bx bxs-cart'></i></button>
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel"><i class='bx bx-store-alt'></i> Thông tin giỏ hàng</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- bảng giỏ hàng thanh toán  -->
-                      <table class="table table-striped-columns">
-                        <thead>
-                            <tr>
-                              <th scope="col">STT</th>
-                              <th scope="col">Hình ảnh</th>
-                              <th scope="col">Tên sản phẩm</th>
-                              <th scope="col">Giá sản phẩm</th>
-                              <th scope="col">Số lượng</th>
-                              <th scope="col">Thành tiền</th>
-                              <th scope="col">Tùy chỉnh</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td><img width="50" src="https://images.fpt.shop/unsafe/fit-in/214x214/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2022/6/15/637908818266708070_quat-hop-ac-abf01a125-1.jpg" alt=""></td>
-                              <td>Quạt máy</td>
-                              <td>500.000</td>
-                              <td>2</td>
-                              <td>1.0000.0000</td>
-                              <td ><button class="btn btn-outline-success me-2"><i class='bx bxs-message-square-x'></i></button></td>
-                            </tr>
-                            
-                          </tbody>
-                    </table>
-                    <!-- ----------------------------------------- -->
-                    </div>
-                    <div class="modal-footer">
-                        <p style="font-weight:400;">Tổng số tiền: </p><span>200.0000</span>
-                      </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                      <button type="button" class="btn btn-primary">Thanh toán</button>
-                    </div>
-                  </div>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+
+          <!-- modal giỏ hàng -->
+          <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal"
+            data-bs-target="#exampleModal"><i class='bx bxs-cart'></i></button>
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel"><i class='bx bx-store-alt'></i> Thông tin giỏ hàng
+                  </h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <!-- bảng giỏ hàng thanh toán  -->
+                  <table class="table table-striped-columns">
+                    <thead>
+                      <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Hình ảnh</th>
+                        <th scope="col">Tên sản phẩm</th>
+                        <th scope="col">Giá sản phẩm</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Thành tiền</th>
+                        <th scope="col">Tùy chỉnh</th>
+                      </tr>
+                    </thead>
+                    <tbody class="hoa-don-san-pham">
+                      
+                        
+
+                    </tbody>
+                  </table>
+                  <!-- ----------------------------------------- -->
+                </div>
+                <div class="modal-footer">
+                  <p style="font-weight:400;">Tổng số tiền: </p><span class="tong-thanh-toan">200.0000</span>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                  <button type="button" class="btn btn-primary">Thanh toán</button>
                 </div>
               </div>
-              <!-- --------------------------------------- -->
+            </div>
+          </div>
+          <!-- --------------------------------------- -->
 
-              <input class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm tại đây" aria-label="Search" style="width: 300px;">
-              <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
-            </form>
-          </div>
-        </div>
-      </nav>
-  
-
-    <!-- slide banner shop -->
-    <div id="carouselExample" class="carousel slide" >
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="https://cdn.tgdd.vn/2023/07/banner/acer-1200-300-1200x300-2.png" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="https://cdn.tgdd.vn/2023/07/banner/msi-1200-300-1200x300-1.png" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="https://cdn.tgdd.vn/2023/08/banner/laptop-masstel-1200-300-1200x300.png" class="d-block w-100" alt="...">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+          <input class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm tại đây" aria-label="Search"
+            style="width: 300px;">
+          <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
+        </form>
+      </div>
     </div>
-    <!-- ------------------------------------------ -->
-    
-    <!-- Title sản phẩm -->
-    <div class="container text-center mt-3">
-        <div class="row">
-          <div class="col">
-          <h3>Sản phẩm nổi bật</h3>
-          </div>
-        </div>
+  </nav>
+
+
+  <!-- slide banner shop -->
+  <div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://cdn.tgdd.vn/2023/07/banner/acer-1200-300-1200x300-2.png" class="d-block w-100" alt="...">
       </div>
-    <!-- ----------------------------------------------------------------- -->
-
-    <!-- Gian hàng sản phẩm sản phẩm -->
-    <div class="container text-center mt-3 mb-2">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="card" style="width: 18rem;">
-                <img src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" class="card-img-top" alt="...">
-                <div class="card-body" style="text-align: left;">
-                  <h5 class="card-title">Laptop HP 240 G8 i3 1115G4/8GB/256GB/Win11 (6L1A1PA)</h5>
-                  <p class="card-text"><span style="font-weight: 500;">Giá: </span><span>6.900.000đ</span></p>
-                  <p class="card-text"><span style="font-weight: 500;">Loại sản phẩm: </span><span>Máy tính</span></p>
-                  <p class="card-text"><span style="font-weight: 500;">Thương hiệu: </span><span>HP</span></p>
-                  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group me-2" role="group" aria-label="First group">
-                      <button type="button" class="btn btn-primary">Mua hàng</button>
-                    </div>
-                    <div class="btn-group me-2" role="group" aria-label="Second group">
-                      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal3">Xem chi tiết</button>
-                    </div>
-                  </div>
-                </div>
-            </div>
-        </div>
-          <div class="col-md-3">
-            <div class="card" style="width: 18rem;">
-                <img src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" class="card-img-top" alt="...">
-                <div class="card-body" style="text-align: left;">
-                  <h5 class="card-title">Laptop HP 240 G8 i3 1115G4/8GB/256GB/Win11 (6L1A1PA)</h5>
-                  <p class="card-text"><span style="font-weight: 500;">Giá: </span><span>6.900.000đ</span></p>
-                  <p class="card-text"><span style="font-weight: 500;">Loại sản phẩm: </span><span>Máy tính</span></p>
-                  <p class="card-text"><span style="font-weight: 500;">Thương hiệu: </span><span>HP</span></p>
-                  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group me-2" role="group" aria-label="First group">
-                      <button type="button" class="btn btn-primary">Mua hàng</button>
-                    </div>
-                    <div class="btn-group me-2" role="group" aria-label="Second group">
-                      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal3">Xem chi tiết</button>
-                    </div>
-                  </div>
-                </div>
-            </div>
-
-          </div>
-          <div class="col-md-3">
-            <div class="card" style="width: 18rem;">
-                <img src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" class="card-img-top" alt="...">
-                <div class="card-body" style="text-align: left;">
-                  <h5 class="card-title">Laptop HP 240 G8 i3 1115G4/8GB/256GB/Win11 (6L1A1PA)</h5>
-                  <p class="card-text"><span style="font-weight: 500;">Giá: </span><span>6.900.000đ</span></p>
-                  <p class="card-text"><span style="font-weight: 500;">Loại sản phẩm: </span><span>Máy tính</span></p>
-                  <p class="card-text"><span style="font-weight: 500;">Thương hiệu: </span><span>HP</span></p>
-                  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group me-2" role="group" aria-label="First group">
-                      <button type="button" class="btn btn-primary">Mua hàng</button>
-                    </div>
-                    <div class="btn-group me-2" role="group" aria-label="Second group">
-                      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal3">Xem chi tiết</button>
-                    </div>
-                  </div>
-                </div>
-            </div>
-
-          </div>
-          <div class="col-md-3">
-            <div class="card" style="width: 18rem;">
-                <img src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" class="card-img-top" alt="...">
-                <div class="card-body" style="text-align: left;">
-                  <h5 class="card-title">Laptop HP 240 G8 i3 1115G4/8GB/256GB/Win11 (6L1A1PA)</h5>
-                  <p class="card-text"><span style="font-weight: 500;">Giá: </span><span>6.900.000đ</span></p>
-                  <p class="card-text"><span style="font-weight: 500;">Loại sản phẩm: </span><span>Máy tính</span></p>
-                  <p class="card-text"><span style="font-weight: 500;">Thương hiệu: </span><span>HP</span></p>
-                  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group me-2" role="group" aria-label="First group">
-                      <button type="button" class="btn btn-primary">Mua hàng</button>
-                    </div>
-                    <div class="btn-group me-2" role="group" aria-label="Second group">
-                      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal3">Xem chi tiết</button>
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </div>
-
-        </div>
+      <div class="carousel-item">
+        <img src="https://cdn.tgdd.vn/2023/07/banner/msi-1200-300-1200x300-1.png" class="d-block w-100" alt="...">
       </div>
-
-      <div class="container text-center mb-4">
-        <div class="row">
-          <div class="col">
-           <button class="btn btn-outline-success">Xem thêm</button>
-          </div>
-        </div>
+      <div class="carousel-item">
+        <img src="https://cdn.tgdd.vn/2023/08/banner/laptop-masstel-1200-300-1200x300.png" class="d-block w-100"
+          alt="...">
       </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <!-- ------------------------------------------ -->
 
-    <!-- ----------------------------------------------------------------- -->
+  <!-- Title sản phẩm -->
+  <div class="container text-center mt-3">
+    <div class="row">
+      <div class="col">
+        <h3>Sản phẩm nổi bật</h3>
+      </div>
+    </div>
+  </div>
+  <!-- ----------------------------------------------------------------- -->
 
-    <!-- modal chi tiết sản phẩm -->
-    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Chi tiết sản phẩm</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+  <!-- Gian hàng sản phẩm sản phẩm -->
+  <div class="container text-center mt-3 mb-2">
+    <div class="row product-sell">
 
-                <!-- gallery sản phẩm -->
+
+
+    </div>
+  </div>
+
+  <div class="container text-center mb-4">
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-outline-success" onclick="show_san_pham2()">Xem thêm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ----------------------------------------------------------------- -->
+
+  <!-- modal chi tiết sản phẩm -->
+  <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Chi tiết sản phẩm</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <!-- gallery sản phẩm -->
+          <div class="container text-center">
+            <div class="row">
+              <div class="col">
+                <img src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg"
+                  alt="">
+                <div class="gallery mt-3">
+                  <img style="cursor: pointer;" width="50" height="50"
+                    src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg"
+                    alt="">
+                  <img style="cursor: pointer;" width="50" height="50"
+                    src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg"
+                    alt="">
+                  <img style="cursor: pointer;" width="50" height="50"
+                    src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg"
+                    alt="">
+                  <img style="cursor: pointer;" width="50" height="50"
+                    src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg"
+                    alt="">
+                  <img style="cursor: pointer;" width="50" height="50"
+                    src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg"
+                    alt="">
+                  <img style="cursor: pointer;" width="50" height="50"
+                    src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg"
+                    alt="">
+                </div>
+              </div>
+              <div class="col">
                 <div class="container text-center">
-                    <div class="row">
-                      <div class="col">
-                        <img src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" alt="">
-                        <div class="gallery mt-3">
-                        <img style="cursor: pointer;" width="50" height="50" src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" alt="">
-                        <img style="cursor: pointer;" width="50" height="50" src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" alt="">
-                        <img style="cursor: pointer;" width="50" height="50" src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" alt="">
-                        <img style="cursor: pointer;" width="50" height="50" src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" alt="">
-                        <img style="cursor: pointer;" width="50" height="50" src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" alt="">
-                        <img style="cursor: pointer;" width="50" height="50" src="https://cdn.tgdd.vn/Products/Images/44/285962/hp-240-g8-i3-6l1a1pa-210423-031503-600x600.jpg" alt="">
+                  <div class="row">
+                    <div class="col">
+                      <div class="product-sell1" style="text-align: left;">
+                        <p style="font-weight: 500;">Laptop HP 240 G8 i3 1115G4/8GB/256GB/Win11 (6L1A1PA)</p>
+                        <p><span style="font-weight: 500;">Giá: </span><span style="font-weight: 400;">6.900.000đ</span>
+                        </p>
+                        <button class="btn btn-primary">Mua Ngay</button>
+                        <div class="btn-toolbar mt-3" role="toolbar" aria-label="Toolbar with button groups">
+                          <div class="btn-group me-2" role="group" aria-label="First group">
+                            <button type="button" class="btn btn-primary">Trả góp 0%</button>
+                          </div>
+                          <div class="btn-group me-2" role="group" aria-label="Second group">
+                            <button type="button" class="btn btn-primary">Trả góp qua thẻ</button>
+                          </div>
                         </div>
                       </div>
-                      <div class="col">
-                        <div class="container text-center">
-                            <div class="row">
-                              <div class="col">
-                                <div class="product-sell" style="text-align: left;">
-                                    <p style="font-weight: 500;">Laptop HP 240 G8 i3 1115G4/8GB/256GB/Win11 (6L1A1PA)</p>
-                                    <p><span style="font-weight: 500;">Giá: </span><span style="font-weight: 400;">6.900.000đ</span></p>
-                                    <button class="btn btn-primary">Mua Ngay</button>
-                                    <div class="btn-toolbar mt-3" role="toolbar" aria-label="Toolbar with button groups">
-                                        <div class="btn-group me-2" role="group" aria-label="First group">
-                                          <button type="button" class="btn btn-primary">Trả góp 0%</button>
-                                        </div>
-                                        <div class="btn-group me-2" role="group" aria-label="Second group">
-                                          <button type="button" class="btn btn-primary">Trả góp qua thẻ</button>
-                                        </div>
-                                      </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>  
-                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="bai-viet-sp ms-3">
-                   <p style="font-size: 20px;font-weight: 500;">Bài viết sản phẩm</p>
-                </div>
-            <!-- ----------------------------------------- -->
-          </div>
-        </div>
-      </div>
-    <!-- --------------------------------------- -->
-
-      <!-- FOOTER SHOPPING -->
-      <div class="fotter mt-4" style="background-color: black;height: 100px;color: aliceblue;">
-        <div style="width: 100%;" class="container text-center w-100 mb-5 mt-4" data-bs-theme="dark">
-            <div style="width: 100%;" class="row w-100">
-              <div style="width: 100%;" class="col w-100 mt-4">
-                Creator by Ngoc
               </div>
             </div>
           </div>
+        </div>
+        <div class="bai-viet-sp ms-3">
+          <p style="font-size: 20px;font-weight: 500;">Bài viết sản phẩm</p>
+        </div>
+        <!-- ----------------------------------------- -->
       </div>
-      
-      <!-- ----------------------------------------------------------------- -->
+    </div>
+  </div>
+  <!-- --------------------------------------- -->
 
-        
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-  </body>
+  <!-- FOOTER SHOPPING -->
+  <div class="fotter mt-4" style="background-color: black;height: 100px;color: aliceblue;">
+    <div style="width: 100%;" class="container text-center w-100 mb-5 mt-4" data-bs-theme="dark">
+      <div style="width: 100%;" class="row w-100">
+        <div style="width: 100%;" class="col w-100 mt-4">
+          Creator by Ngoc
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ----------------------------------------------------------------- -->
+
+
+  <script>
+    localStorage.setItem("current_page", 1)
+    $.ajax({
+      url: "https://students.trungthanhweb.com/api/home",
+      data: { "apitoken": "Sf6v5OIkLScoLYUEljQ4dJtDJyffsuRXchD24atYwE6KrU2wLfui1RC9PLHz" },
+      success: function (result) {
+        var str = "";
+        k = 0
+        $.each(result.products, function (i, field) {
+          for (i = 0; i < field.length; ++i) {
+            k = k + 1
+            if (k <= 4) {
+              str1 = `<div class="col">
+            <div class="card mb-3" style="width: 19rem;">
+                <img src="`+ "https://students.trungthanhweb.com/images/" + field[i].images + `" class="card-img-top" alt="...">
+                <div class="card-body" style="text-align: left;">
+                  <h5 class="card-title product`+ field[i].id + `">` + field[i].name + `</h5>
+                  <p class="card-text"><span style="font-weight: 500;">Giá: </span><span class="product-price`+ field[i].id + `">` + Intl.NumberFormat('en-US').format(field[i].price) + `</span></p>
+                  <p class="card-text"><span style="font-weight: 500;">Loại sản phẩm: </span><span>Điện thoại</span></p>
+                  <p class="card-text"><span style="font-weight: 500;">Thương hiệu: </span><span>Apple</span></p>
+                  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group me-2" role="group" aria-label="First group">
+                      <button type="button" onclick="addtocart(`+ field[i].id +","+"'"+"https://students.trungthanhweb.com/images/" + field[i].images+"'"+ `)" class="btn btn-primary">Mua hàng</button>
+                    </div>
+                    <div class="btn-group me-2" role="group" aria-label="Second group">
+                      <button onclick="view_product(`+ field[i].id + `)" id="` + field[i].id + `" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal3">Xem chi tiết</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>`
+              str = str + str1;
+            }
+          }
+          $(".product-sell").html(str);
+          console.log(str);
+          localStorage.setItem("current_page", result.products.current_page)
+          localStorage.setItem("max_current_page", result.products.last_page)
+        });
+
+      }
+    }
+    )
+
+
+    var key = localStorage.getItem("api_token");
+        if (key != null) {
+            $(".submit-login").html("Đăng xuất");
+            $(".email-submit").val(localStorage.getItem("api_token"))
+            $(".title-login").html(localStorage.getItem("email"));
+        }
+
+        $(".submit-login").click(function () {
+            var key2 = localStorage.getItem("api_token")
+            if (key2 == null) {
+                login($(".email-submit").val())
+            }
+            if (key2 != null) {
+                localStorage.removeItem("api_token");
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'info',
+                    title: 'Đăng xuất thành công'
+                }).then(() => {
+                    window.location.reload();
+                })
+            }
+        })
+        function login(email) {
+            if (email != "") {
+                $.ajax({
+                    method: "POST",
+                    url: "https://students.trungthanhweb.com/api/checkLoginhtml",
+                    data: { "email": email },
+                    success: function (result) {
+                        localStorage.setItem("api_token", result.apitoken)
+                        localStorage.setItem("email", email)
+                        $(".submit-login").html("Đăng xuất");
+                        $(".email-submit").val(result.apitoken);
+                        $(".title-login").html(email);
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Đăng nhập thành công'
+                        }).then(() => {
+                            window.location.reload();
+                        })
+                    }
+                }
+                )
+            }
+            else {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Vui lòng điền email vào'
+                })
+            }
+
+        }
+ 
+        function addtocart(id,src) {
+            var key3 = localStorage.getItem("api_token");
+            if (key3 != null) {
+                var cart_localstore = localStorage.getItem("cart");
+                if (cart_localstore != null) {
+                    var quality = 1;
+                    console.log("Đã đăng nhập");
+                    string_class_name_product = ".product" + id;
+                    string_price_product = ".product-price" + id;
+                    name_product = $(string_class_name_product).text();
+                    price_product = $(string_price_product).text().replace(",","").replace(",","");
+                    console.log(price_product);
+                    string_set_add_to_cart = quality + "," + name_product + "," + price_product+","+src
+                    cart = []
+                    check = 0
+                    cart.push(string_set_add_to_cart)
+                    cart_split = cart_localstore.split("##");
+                    str2=''
+                    cart_split.forEach(element => {
+                        if (element.split(",")[1] == name_product) {
+                            check = 1
+                            string_update = parseInt(element.split(",")[0]) + 1 + "," + element.split(",")[1]+"," + element.split(",")[2]+","+src
+                            str2=str2+string_update
+                        }
+                    });
+                    if (check == 1) {
+                        cart00 = localStorage.getItem("cart").split("##")
+                        cart00[0] = str2
+                        console.log(cart00);
+                        str = ''
+                        k = 1
+                        cart00.forEach(element => {
+                            if (k < cart00.length) {
+                                str = str + element + "##"
+                            }
+                            if (k == cart00.length) {
+                                str = str + element
+                            }
+                            k = k + 1
+                        });
+                        localStorage.setItem('cart', str)
+                    }
+                    if (check != 1) {
+                        localStorage.setItem('cart', cart + "##" + cart_localstore)
+                    }
+                    show_san_pham()
+                }
+
+                if (cart_localstore == null) {
+                    var quality = 1;
+                    console.log("Đã đăng nhập");
+                    string_class_name_product = ".product" + id;
+                    string_price_product = ".product-price" + id;
+                    name_product = $(string_class_name_product).text().replace(",","").replace(",","");
+                    price_product = $(string_price_product).text();
+                    string_set_add_to_cart = quality + "," + name_product + "," + price_product+","+src
+                    cart = []
+                    check = 0
+                    cart.push(string_set_add_to_cart)
+                    localStorage.setItem('cart', cart)
+                    show_san_pham()
+                }
+            }
+            if (key3 == null) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'warning',
+                    title: 'Vui lòng đăng nhập trước khi mua hàng'
+                })
+            }
+        }
+        show_san_pham()
+        function show_san_pham(){
+        console.log("show sản phẩm");
+        cart_local= localStorage.getItem("cart");
+        cartlocal2=cart_local.split("##")
+        console.log(cartlocal2)
+        k=1
+        str44=""
+        tong_so_tien=0
+        cartlocal2.forEach(element => {
+            if(element.split(",")[0]!=""){
+                str22=`
+            <tr>
+                <th scope="row">`+k+`</th>
+                <td><img width="50"
+                            src="`+element.split(",")[3]+`"
+                            alt=""></td>
+                <td>`+element.split(",")[1]+`</td>
+                <td>`+Intl.NumberFormat('en-US').format(element.split(",")[2])+`</td>
+                <td>`+element.split(",")[0]+`</td>
+                <td>`+Intl.NumberFormat('en-US').format(parseInt(element.split(",")[2])*parseInt(element.split(",")[0]))+`</td>
+                <td><button class="removeItem" style="width: 100px;border: none;background-color: black;color: white;" onclick="delete2('`+element.split(",")[1]+`')">xóa</button></td>
+            </tr>
+            `
+            str44 = str44+str22
+            tong_so_tien = tong_so_tien+parseInt(element.split(",")[2])*parseInt(element.split(",")[0])
+            k=k+1
+            }
+            
+        });
+        $(".hoa-don-san-pham").html(str44)
+        $(".tong-thanh-toan").html(Intl.NumberFormat('en-US').format(tong_so_tien))
+    }
+
+    function delete2(name){
+        console.log("xoa san pham");
+        cart00 = localStorage.getItem("cart").split("##")
+        console.log(cart00);
+        str = ''
+        k = 1
+        cart00.forEach(element => {
+            cart_name= element.split(",")[1]
+            if(name!=cart_name){
+            if (k < cart00.length) {
+                str = str + element + "##"
+            }
+            if (k == cart00.length) {
+                str = str + element
+            }
+            }
+            k = k + 1
+        });
+        localStorage.setItem('cart', str)
+        show_san_pham()
+    }
+
+    function show_san_pham2(){
+        $.ajax({
+                url: "https://students.trungthanhweb.com/api/home",
+                data: { "apitoken": "Sf6v5OIkLScoLYUEljQ4dJtDJyffsuRXchD24atYwE6KrU2wLfui1RC9PLHz"},
+                success: function (result) {
+                    console.log(result.products.last_page);
+                    number_page=parseInt(localStorage.getItem("current_page"));
+                    number_page2=parseInt(localStorage.getItem("max_current_page"));
+                    k = 0
+                    if(number_page<=number_page2){
+                        number_page3=number_page+1;
+                        localStorage.setItem("current_page",number_page3);
+                        $.ajax({
+            url: "https://students.trungthanhweb.com/api/home",
+            data: { "apitoken": "Sf6v5OIkLScoLYUEljQ4dJtDJyffsuRXchD24atYwE6KrU2wLfui1RC9PLHz","page":number_page3},
+            success: function (result) {
+                var str = "";
+                $.each(result.products, function (i,field) {
+                    for (i = 0; i < field.length; ++i) {
+                        k = k + 1
+                        if(field[i].name!=undefined){
+                            if (k <= 4) {
+                            if(field[i].name!=""){
+                                console.log(field[i].name);
+                                str1 = `<div class="col-md-3">
+            <div class="card mb-3" style="width: 306;height:525;">
+                <img width="286" height="286" src="`+ "https://students.trungthanhweb.com/images/" + field[i].images + `" class="card-img-top" alt="...">
+                <div class="card-body" style="text-align: left;">
+                  <h5 class="card-title product`+ field[i].id + `">` + field[i].name + `</h5>
+                  <p class="card-text"><span style="font-weight: 500;">Giá: </span><span class="product-price`+ field[i].id + `">` + Intl.NumberFormat('en-US').format(field[i].price) + `</span></p>
+                  <p class="card-text"><span style="font-weight: 500;">Loại sản phẩm: </span><span>Điện thoại</span></p>
+                  <p class="card-text"><span style="font-weight: 500;">Thương hiệu: </span><span>Apple</span></p>
+                  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group me-2" role="group" aria-label="First group">
+                      <button type="button" onclick="addtocart(`+ field[i].id +","+"'"+"https://students.trungthanhweb.com/images/" + field[i].images+"'"+ `)" class="btn btn-primary">Mua hàng</button>
+                    </div>
+                    <div class="btn-group me-2" role="group" aria-label="Second group">
+                      <button onclick="view_product(`+ field[i].id + `)" id="` + field[i].id + `" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal3">Xem chi tiết</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>`;
+                                console.log(str1);
+                                $(".product-sell").append(str1);
+                            }
+                        }
+                        }
+                    }
+                    /////
+                
+                });
+
+            }
+        }
+        )
+                    }
+                    else{
+                        $(".load-san-pham11").attr("disabled");
+                    }
+                }
+            })
+    }
+  
+    loadcatogories()
+    function loadcatogories(){
+        $.ajax({
+                url: "https://students.trungthanhweb.com/api/home",
+                data: { "apitoken": "Sf6v5OIkLScoLYUEljQ4dJtDJyffsuRXchD24atYwE6KrU2wLfui1RC9PLHz"},
+                success: function (result) {
+                    console.log("success!");
+                    str=""
+                    $.each(result, function (i, field) {
+                    for (i = 0; i < field.length; ++i) {
+                        console.log(field[i].name)
+                        str2=`
+                        <li style="padding-left:4px;">`+field[i].name+`</li>
+                        `
+                        str=str+str2;
+                    }});
+                    $(".catagories").html(str);
+                }
+            })
+    }
+
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
