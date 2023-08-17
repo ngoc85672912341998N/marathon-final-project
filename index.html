@@ -853,7 +853,7 @@
     }
     view_chi_tiet_hoa_don()
     function view_chi_tiet_hoa_don() {
-      if(localStorage.getItem("api_token")!=0){
+      if(localStorage.getItem("api_token")!=""){
         $.ajax({
         url: "https://students.trungthanhweb.com/api/bills",
         data: {
