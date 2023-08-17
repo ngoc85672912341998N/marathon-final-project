@@ -474,7 +474,8 @@
     }
 
     function addtocart(id, src) {
-      var key3 = localStorage.getItem("api_token");
+      try {
+        var key3 = localStorage.getItem("api_token");
       if (key3 != null) {
         var cart_localstore = localStorage.getItem("cart");
         if (cart_localstore != null) {
@@ -586,6 +587,10 @@
           title: 'Vui lòng đăng nhập trước khi mua hàng'
         })
       }
+      } catch (error) {
+        console.log(error);
+      }
+      
     }
     show_san_pham()
     function show_san_pham() {
