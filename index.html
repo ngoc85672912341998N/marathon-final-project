@@ -887,7 +887,9 @@
       }
       
     }
-
+    function setimage(src){
+        $(".anh_main_product").attr("src",src);
+    }
     function search_product() {
       name_value = $(".tim-kiem-san-pham").val()
       if (name_value != "") {
