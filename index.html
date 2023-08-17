@@ -558,8 +558,12 @@
     show_san_pham()
     function show_san_pham() {
       console.log("show sản phẩm");
-      cart_local = localStorage.getItem("cart");
-      cartlocal2 = cart_local.split("##")
+      try {
+        cart_local = localStorage.getItem("cart");
+        cartlocal2 = cart_local.split("##")
+      } catch (error) {
+        console.log(error);
+      }
       console.log(cartlocal2)
       k = 1
       str44 = ""
