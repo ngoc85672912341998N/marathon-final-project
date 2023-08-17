@@ -843,7 +843,7 @@
                 "phone": phone,
                 "address": address,
                 "cart": arr,
-                "api_token": "Sf6v5OIkLScoLYUEljQ4dJtDJyffsuRXchD24atYwE6KrU2wLfui1RC9PLHz"
+                "api_token": localStorage.getItem("api_token")
               },
               success: function (result) {
                 $.each(result, function (i, field) {
@@ -870,9 +870,7 @@
             Toast.fire({
               icon: 'success',
               title: 'Thanh toán thành công'
-            }).then(() => {
-          window.location.reload();
-        })
+            })
           }
         }
         else {
