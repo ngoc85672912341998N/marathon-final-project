@@ -759,6 +759,7 @@
           });
           $(".catolo").html(str0);
           $(".anh_main_product").attr("src", result.gallery[0]);
+          $(".anh_main_product").attr("style", "height:358px;width:auto;margin:0px auto;");
           $(".addtocartview").attr("id", id);
           string = "addtocart(" + id + "," + "'" + result.gallery[0] + "'" + ")"
           $(".addtocartview").attr("onclick", string);
