@@ -853,7 +853,8 @@
     }
     view_chi_tiet_hoa_don()
     function view_chi_tiet_hoa_don() {
-      $.ajax({
+      if(localStorage.getItem("api_token")!=0){
+        $.ajax({
         url: "https://students.trungthanhweb.com/api/bills",
         data: {
           "api_token": "Sf6v5OIkLScoLYUEljQ4dJtDJyffsuRXchD24atYwE6KrU2wLfui1RC9PLHz"
@@ -880,6 +881,11 @@
           $(".chi-tiet-hoa-don-2").html(str)
         }
       })
+      }
+      else{
+        console.log("loi");
+      }
+      
     }
 
     function search_product() {
