@@ -84,6 +84,7 @@
                             <th scope="col">Tên khách hàng</th>
                             <th scope="col">Số điện thoại</th>
                             <th scope="col">Địa chỉ</th>
+                            <th scope="col">Tùy chỉnh</th>
                           </tr>
                         </thead>
                         <tbody class="chi-tiet-hoa-don-2">
@@ -338,6 +339,37 @@
 
   <!-- ----------------------------------------------------------------- -->
 
+  <div class="modal fade" id="exampleModal10211" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div style="background-color: black;color: aliceblue;" class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Hóa đơn chi tiết</h1>
+          <button style="color: aliceblue;" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col">Hình ảnh</th>
+                <th scope="col">Giá</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Thành tiền</th>
+              </tr>
+            </thead>
+            <tbody class="chi-tiet-hoa-don2">
+              <h5></h5>
+            </tbody>
+          </table>
+        </div>
+        <div style="background-color: black;color: aliceblue;" class="modal-footer">
+          <div class="tong-tien">
+
+          </div>
+        </div>
+      </div>
+    </div>
 
   <script>
     localStorage.setItem("current_page", 1)
@@ -486,7 +518,7 @@
           name_product = $(string_class_name_product).text();
           price_product = $(string_price_product).text().replace(",", "").replace(",", "");
           console.log(price_product);
-          string_set_add_to_cart = quality + "," + name_product + "," + price_product + "," + src
+          string_set_add_to_cart = quality + "," + name_product + "," + price_product + "," + src+","+id
           cart = []
           check = 0
           cart.push(string_set_add_to_cart)
@@ -495,7 +527,7 @@
           cart_split.forEach(element => {
             if (element.split(",")[1] == name_product) {
               check = 1
-              string_update = parseInt(element.split(",")[0]) + 1 + "," + element.split(",")[1] + "," + element.split(",")[2] + "," + src
+              string_update = parseInt(element.split(",")[0]) + 1 + "," + element.split(",")[1] + "," + element.split(",")[2] + "," + src+","+id
               str2 = str2 + string_update
             }
           });
@@ -545,7 +577,7 @@
           string_price_product = ".product-price" + id;
           name_product = $(string_class_name_product).text().replace(",", "").replace(",", "");
           price_product = $(string_price_product).text().replace(",", "").replace(",", "");
-          string_set_add_to_cart = quality + "," + name_product + "," + price_product + "," + src
+          string_set_add_to_cart = quality + "," + name_product + "," + price_product + "," + src+","+id
           cart = []
           check = 0
           cart.push(string_set_add_to_cart)
@@ -814,27 +846,26 @@
             text = localStorage.getItem("cart");
             let position = text.search("##");
             if (position == "-1") {
-              arr.push(text)
+              k = element.split(",")
+              if(element.split(",")!=['']){
+                  if(element.split(",")[4]!=undefined){
+                    console.log(element.split(",")[4]);
+                    arr.push([Number(element.split(",")[4]), Number(element.split(",")[0])])
+                  }
+                }
             }
             else {
               cart = localStorage.getItem("cart").split("##");
               cart.forEach(element => {
-                console.log(element.split(","));
-                k = element.split(",")
-                for (let index = 0; index < k.length; index++) {
-                  const element = k[index];
-                  if (index == 0) {
-                    console.log(element + "##product");
-                    arr.push(element + "##product");
-                  }
-                  else {
-                    console.log(element);
-                    arr.push(element);
+                if(element.split(",")!=['']){
+                  if(element.split(",")[4]!=undefined){
+                    console.log(element.split(",")[4]);
+                    arr.push([Number(element.split(",")[4]), Number(element.split(",")[0])])
                   }
                 }
-
               });
             }
+            console.log(arr);
             $.ajax({
               method: "POST",
               url: "https://students.trungthanhweb.com/api/createBill",
@@ -853,8 +884,10 @@
                     }
                   }
                 })
+                view_chi_tiet_hoa_don()
               }
             })
+         
             const Toast = Swal.mixin({
               toast: true,
               position: 'top-end',
@@ -914,7 +947,6 @@
     }
     view_chi_tiet_hoa_don()
     function view_chi_tiet_hoa_don() {
-        try {
           $.ajax({
         url: "https://students.trungthanhweb.com/api/bills",
         data: {
@@ -926,6 +958,7 @@
             for (i = 0; i < field.length; ++i) {
               console.log(field[i].id);
               if (field[i].id != "") {
+                
                 str1 = `
                         <tr>
                           <th scope="row">`+ i + `</th>
@@ -933,6 +966,7 @@
                           <td>`+ field[i].tenKH + `</td>
                           <td>`+ field[i].phone + `</td>
                           <td>`+ field[i].address + `</td>
+                          <td><button onclick="view_hoa_don(`+field[i].id+`)" class="btn btn-primary">xem chi tiết</button></td>
                         </tr>
                         `
                 str = str + str1
@@ -942,10 +976,8 @@
           $(".chi-tiet-hoa-don-2").html(str)
         }
       })
-        } catch (error) {
-          console.log(error);
-        }
         
+    
       
       
     }
@@ -1037,11 +1069,54 @@
 
 
     }
+
+    function view_hoa_don(id) {
+      $.ajax({
+          url: "https://students.trungthanhweb.com/api/singlebill",
+          data: { "api_token": localStorage.getItem("api_token"),
+                  "id": id},
+          success: function (result) {
+            str=""
+            i11=0
+            $.each(result, function (i, field) {
+            for (i = 0; i < field.length; ++i) {
+              if(field[i].productname!=undefined){
+              console.log(field[i].productname);
+              console.log(field[i].image)
+              console.log(field[i].price)
+              console.log(field[i].qty)
+                str1=`
+                <tr>
+                    <th scope="row">`+i+`</th>
+                    <td>`+field[i].productname+`</td>
+                    <td><img width="82" height="82" src="`+ "https://students.trungthanhweb.com/images/" + field[i].image + `" class="card-img-top" alt="..."></td>
+                    <td>`+Intl.NumberFormat('en-US').format(field[i].price)+`</td>
+                    <td>`+field[i].qty+`</td>
+                    <td>`+Intl.NumberFormat('en-US').format(parseInt(field[i].qty)*parseInt(field[i].price))+`</td>
+                </tr>
+                `
+                str=str+str1
+                k11=parseInt(field[i].qty)*parseInt(field[i].price)
+                i11=i11+k11
+              }
+              
+            }
+            string=`<h7>Tổng thành tiền: `+Intl.NumberFormat('en-US').format(i11)+`</h7>`
+            $(".chi-tiet-hoa-don2").html(str)
+            $(".tong-tien").html(string)
+          })
+            
+          }
+        }
+        )
+      $("#exampleModal10211").modal('show');
+    }
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
     crossorigin="anonymous"></script>
+    
 </body>
 
 </html>
